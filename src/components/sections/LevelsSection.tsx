@@ -105,12 +105,10 @@ const LevelsSection = () => {
         </div>
         
         <div className="relative mt-12 mb-20">
-          {/* Progress path */}
           <div className="absolute h-2 bg-cyber-dark left-4 right-4 top-12 md:top-16 rounded-full overflow-hidden z-0">
             <div className="h-full bg-gradient-to-r from-cyber-blue to-cyber-purple w-[25%]"></div>
           </div>
           
-          {/* Levels */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {levels.map((level, index) => (
               <motion.div
@@ -161,7 +159,6 @@ const LevelsSection = () => {
           </div>
         </div>
         
-        {/* XP and Badges */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-32">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
