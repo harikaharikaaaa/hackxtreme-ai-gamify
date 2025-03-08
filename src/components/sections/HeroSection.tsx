@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Zap, ArrowRight } from 'lucide-react';
+import { Shield, ArrowRight } from 'lucide-react';
+import { Zap } from '@/components/ui/custom-icons';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {

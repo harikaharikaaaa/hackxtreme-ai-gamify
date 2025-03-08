@@ -1,7 +1,8 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Shield, Lock, CheckCircle } from 'lucide-react';
+import { Zap, Bug, Network } from '@/components/ui/custom-icons';
+import { Terminal } from 'lucide-react';
 
 const levels = [
   { 

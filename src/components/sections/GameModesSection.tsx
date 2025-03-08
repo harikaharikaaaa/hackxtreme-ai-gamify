@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Robot, Users, Flag, RadioTower, ChevronRight } from 'lucide-react';
+import { Users, Flag, RadioTower, ChevronRight } from 'lucide-react';
+import { Robot } from '@/components/ui/custom-icons';
 
 interface GameModeCardProps {
   icon: React.ReactNode;

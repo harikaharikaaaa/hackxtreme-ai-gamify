@@ -1,12 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import HeroSection from "@/components/sections/HeroSection";
+import FeaturesSection from "@/components/sections/FeaturesSection";
+import LevelsSection from "@/components/sections/LevelsSection";
+import GameModesSection from "@/components/sections/GameModesSection";
+import ThreatMapSection from "@/components/sections/ThreatMapSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-cyber-dark text-white">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <FeaturesSection />
+        <LevelsSection />
+        <GameModesSection />
+        <ThreatMapSection />
+      </main>
+      <Footer />
     </div>
   );
 };
