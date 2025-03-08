@@ -1,9 +1,22 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, ArrowRight } from 'lucide-react';
 import { Zap } from '@/components/ui/custom-icons';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
+
 const HeroSection = () => {
+  const { isAuthenticated, openAuthModal, logout } = useAuth();
+
+  const handleAuthButtonClick = () => {
+    if (isAuthenticated) {
+      logout();
+    } else {
+      openAuthModal();
+    }
+  };
+
   return <section className="min-h-screen relative flex items-center pt-20 overflow-hidden">
       {/* Background effect */}
       <div className="absolute inset-0 bg-cyber-grid"></div>
@@ -38,8 +51,11 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button className="btn-cyber w-full sm:w-auto text-lg px-8 py-3">
-                Join Now <ArrowRight className="ml-2 h-5 w-5" />
+              <Button 
+                onClick={handleAuthButtonClick}
+                className="btn-cyber w-full sm:w-auto text-lg px-8 py-3"
+              >
+                {isAuthenticated ? 'Dashboard' : 'Join Now'} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
             </div>
