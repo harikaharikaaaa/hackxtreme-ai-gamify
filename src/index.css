@@ -1,92 +1,38 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 240 17% 7%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 240 17% 9%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 240 17% 9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 196 84% 45%;
+    --primary-foreground: 240 17% 7%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 240 17% 15%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 17% 14%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 270 91% 65%;
+    --accent-foreground: 240 5% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 240 17% 20%;
+    --input: 240 17% 20%;
+    --ring: 240 17% 20%;
+    --radius: 0.5rem;
   }
 }
 
@@ -96,6 +42,169 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cyber-dark text-cyber-light antialiased bg-cyber-grid;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  /* Cyberpunk-style scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-cyber-blue to-cyber-purple rounded-full;
+  }
+}
+
+@layer components {
+  .cyber-terminal {
+    @apply border-2 border-cyber-blue relative overflow-hidden;
+    background: linear-gradient(180deg, rgba(15, 15, 23, 0.9) 0%, rgba(9, 9, 20, 0.95) 100%);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.3), inset 0 0 5px rgba(14, 165, 233, 0.2);
+  }
+
+  .cyber-terminal::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  }
+
+  .cyber-terminal::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.03) 0%, rgba(139, 92, 246, 0.03) 50%, rgba(14, 165, 233, 0.03) 100%);
+  }
+
+  .neo-blue-glow {
+    @apply relative;
+  }
+
+  .neo-blue-glow::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-md opacity-50 blur pointer-events-none;
+  }
+
+  .neo-blue-glow::after {
+    content: '';
+    @apply absolute inset-0 bg-cyber-dark rounded-md;
+  }
+
+  .neon-text-blue {
+    @apply text-cyber-blue font-bold;
+    text-shadow: 0 0 5px rgba(14, 165, 233, 0.5), 0 0 10px rgba(14, 165, 233, 0.3);
+  }
+
+  .neon-text-red {
+    @apply text-cyber-red font-bold;
+    text-shadow: 0 0 5px rgba(239, 68, 68, 0.5), 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+
+  .neon-text-purple {
+    @apply text-cyber-purple font-bold;
+    text-shadow: 0 0 5px rgba(139, 92, 246, 0.5), 0 0 10px rgba(139, 92, 246, 0.3);
+  }
+
+  .neon-border {
+    @apply border-2 border-cyber-blue rounded-md;
+    box-shadow: 0 0 5px rgba(14, 165, 233, 0.5), inset 0 0 5px rgba(14, 165, 233, 0.2);
+  }
+
+  .neon-border-red {
+    @apply border-2 border-cyber-red rounded-md;
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.5), inset 0 0 5px rgba(239, 68, 68, 0.2);
+  }
+
+  .neon-border-purple {
+    @apply border-2 border-cyber-purple rounded-md;
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.5), inset 0 0 5px rgba(139, 92, 246, 0.2);
+  }
+
+  .btn-cyber {
+    @apply relative overflow-hidden text-cyber-light font-bold py-2 px-6 rounded-md 
+           transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px]
+           hover:shadow-[0_5px_15px_rgba(14,165,233,0.4)] focus:outline-none;
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+    box-shadow: 0 0 5px rgba(14, 165, 233, 0.5), inset 0 0 5px rgba(14, 165, 233, 0.2);
+  }
+
+  .btn-cyber::before {
+    content: '';
+    @apply absolute top-0 left-[-100%] w-full h-full;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+  }
+
+  .btn-cyber:hover::before {
+    left: 100%;
+  }
+
+  .btn-cyber-red {
+    @apply relative overflow-hidden text-cyber-light font-bold py-2 px-6 rounded-md 
+           transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px]
+           hover:shadow-[0_5px_15px_rgba(239,68,68,0.4)] focus:outline-none;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.5), inset 0 0 5px rgba(239, 68, 68, 0.2);
+  }
+
+  .btn-cyber-red::before {
+    content: '';
+    @apply absolute top-0 left-[-100%] w-full h-full;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+  }
+
+  .btn-cyber-red:hover::before {
+    left: 100%;
+  }
+
+  .cyber-card {
+    @apply bg-cyber-darker border border-cyber-blue/30 rounded-lg p-6 relative overflow-hidden;
+    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1);
+  }
+
+  .cyber-card::before {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-1 bg-gradient-to-r from-cyber-blue via-cyber-purple to-cyber-red;
+    width: 100%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .cyber-card-red {
+    @apply bg-cyber-darker border border-cyber-red/30 rounded-lg p-6 relative overflow-hidden;
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.1);
+  }
+
+  .cyber-card-red::before {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-1 bg-gradient-to-r from-cyber-red via-cyber-purple to-cyber-blue;
+    width: 100%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .terminal-text {
+    @apply font-mono text-cyber-blue overflow-hidden whitespace-nowrap;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    animation: terminal-typing 3s steps(40, end);
+  }
+
+  .terminal-text::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 }
