@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Shield, Zap, BarChart3 } from 'lucide-react';
+import { Brain, Shield, Zap as ZapIcon, BarChart3, ArrowRight } from 'lucide-react';
+import { Zap } from '@/components/ui/custom-icons';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
