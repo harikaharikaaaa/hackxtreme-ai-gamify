@@ -42,7 +42,14 @@ const Navbar = () => {
           <a href="#levels" className="text-cyber-light hover:text-cyber-blue transition-colors">Levels</a>
           <a href="#modes" className="text-cyber-light hover:text-cyber-blue transition-colors">Game Modes</a>
           <a href="#map" className="text-cyber-light hover:text-cyber-blue transition-colors">Threat Map</a>
-          <a href="#ai-chat" className="text-cyber-light hover:text-cyber-blue transition-colors">AI Chat</a>
+          <a 
+            href="https://copilot.microsoft.com/chats/4b2CqCrSSXHQvAPfAmqd7" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-cyber-light hover:text-cyber-blue transition-colors"
+          >
+            AI Chat
+          </a>
           <Button className="ml-4 btn-cyber">Join Now</Button>
         </div>
 
@@ -88,7 +95,9 @@ const Navbar = () => {
               Threat Map
             </a>
             <a 
-              href="#ai-chat" 
+              href="https://copilot.microsoft.com/chats/4b2CqCrSSXHQvAPfAmqd7" 
+              target="_blank" 
+              rel="noopener noreferrer" 
               className="text-cyber-light hover:text-cyber-blue transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
