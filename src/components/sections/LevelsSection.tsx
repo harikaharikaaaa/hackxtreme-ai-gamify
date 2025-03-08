@@ -1,7 +1,12 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Shield, Lock, CheckCircle, Terminal } from 'lucide-react';
+import { Sparkles, Shield, Lock, CheckCircle, Terminal, Play } from 'lucide-react';
 import { Zap, Bug, Network } from '@/components/ui/custom-icons';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
+
 const levels = [{
   name: "Novice",
   description: "Introduction to cybersecurity concepts and basic tools",
@@ -63,7 +68,31 @@ const levels = [{
   isActive: false,
   progress: 0
 }];
+
 const LevelsSection = () => {
+  const { user, openAuthModal } = useAuth();
+
+  const handleStartLevel = (levelIndex: number, levelName: string) => {
+    if (!user) {
+      openAuthModal();
+      return;
+    }
+
+    const level = levels[levelIndex];
+    
+    if (level.isCompleted) {
+      toast.success(`Replay Level ${levelIndex + 1}: ${levelName}`);
+    } else if (level.isActive) {
+      toast.success(`Continue Level ${levelIndex + 1}: ${levelName}`);
+    } else {
+      if (levelIndex > 0 && !levels[levelIndex - 1].isCompleted) {
+        toast.error(`Complete previous level first`);
+        return;
+      }
+      toast.success(`Start Level ${levelIndex + 1}: ${levelName}`);
+    }
+  };
+
   return <section id="levels" className="py-24 relative bg-cyber-darker">
       <div className="absolute inset-0 bg-cyber-grid opacity-20"></div>
       
@@ -128,14 +157,42 @@ const LevelsSection = () => {
                   </div>
                 </div>
                 
-                <div className={`cyber-card h-32 ${level.isActive ? 'neon-border-purple' : ''} transition-all duration-300 hover:-translate-y-2`}>
-                  <p className="text-xs md:text-sm text-cyber-grey">{level.description}</p>
-                  {level.isActive && level.progress > 0 && <div className="mt-4">
+                <div className={`cyber-card h-48 ${level.isActive ? 'neon-border-purple' : ''} transition-all duration-300 hover:-translate-y-2`}>
+                  <p className="text-xs md:text-sm text-cyber-grey mb-4">{level.description}</p>
+                  
+                  {level.isActive && level.progress > 0 && (
+                    <div className="mt-2 mb-4">
                       <div className="w-full h-1.5 bg-cyber-dark/50 rounded-full overflow-hidden">
-                        
+                        <div 
+                          className="h-full bg-cyber-purple" 
+                          style={{ width: `${level.progress}%` }}
+                        />
                       </div>
-                      
-                    </div>}
+                      <p className="text-xs text-right text-cyber-grey mt-1">{level.progress}% complete</p>
+                    </div>
+                  )}
+                  
+                  <Button 
+                    onClick={() => handleStartLevel(index, level.name)}
+                    variant="default" 
+                    className={`w-full mt-auto ${
+                      level.isCompleted 
+                        ? 'bg-cyber-blue hover:bg-cyber-blue/80' 
+                        : level.isActive 
+                          ? 'bg-cyber-purple hover:bg-cyber-purple/80' 
+                          : 'bg-cyber-dark hover:bg-cyber-dark/80 border border-cyber-grey/50'
+                    }`}
+                    disabled={!level.isCompleted && !level.isActive && index > 0 && !levels[index - 1].isCompleted}
+                  >
+                    <Play className="w-4 h-4 mr-2" />
+                    {level.isCompleted 
+                      ? 'Replay' 
+                      : level.isActive 
+                        ? 'Continue' 
+                        : (index === 0 || levels[index - 1].isCompleted) 
+                          ? 'Start' 
+                          : 'Locked'}
+                  </Button>
                 </div>
               </motion.div>)}
           </div>
